@@ -1,0 +1,69 @@
+﻿﻿.form-control-container {
+    background-color: #a2bdc3; /* Cor de fundo desejada para a form-control */
+    border-radius: 8px; /* Borda arredondada */
+    padding: 8px; /* Espaçamento interno */
+    box-sizing: border-box; /* Garante que o padding não afeta a largura total */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%; /* Largura total da entrada de texto */
+    padding: 8px; /* Espaçamento interno da entrada de texto */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 8px 15px; /* Espaçamento interno do botão */
+    border: none; /* Remover borda do botão */
+}
+
+.table {
+    width: 50%; /* Largura total da tabela */
+    margin-top: 20px; /* Espaçamento superior da tabela */
+    border-collapse: collapse; /* Colapso da borda da tabela */
+    /*centralizar a tabela*/
+margin-left: auto;
+margin-right: auto;
+/*cor no funda tabela*/
+background-color: #a2bdc3;
+}
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2; /* Cor de fundo das linhas pares */
+
+}
+
+    .table th, .table td {
+        border: 1px solid #ddd; /* Adicionar borda às células da tabela */
+        padding: 8px; /* Espaçamento interno das células da tabela */
+        text-align: left; /* Alinhamento do texto à esquerda nas células */
+    }
+
+    .table th {
+        background-color: #f2f2f2; /* Cor de fundo do cabeçalho da tabela */
+    }
+
+.text-center {
+    text-align: center; /* Alinhamento de texto centralizado */
+}

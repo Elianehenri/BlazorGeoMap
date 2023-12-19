@@ -1,0 +1,44 @@
+﻿@page "/locality/delete/{id}"
+
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+@attribute [Authorize]
+
+
+<h1>Excluir Localidade</h1>
+
+@if (Locality == null)
+{
+    <p class="text-center">
+        <em>Localidade não encontrada.</em>
+    </p>
+}
+else
+{
+    <p>
+        Tem certeza de que deseja excluir a localidade <strong>@Locality.City, @Locality.State</strong>?
+    </p>
+
+    <button class="btn btn-danger" @onclick="DeleteLocality">Confirmar Exclusão</button>
+    <NavLink href="/locality">Cancelar</NavLink>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private Locality Locality { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locality = await Context.IBGE.FindAsync(Id);
+    }
+
+    private async Task DeleteLocality()
+    {
+        Context.IBGE.Remove(Locality);
+        await Context.SaveChangesAsync();
+        Navigation.NavigateTo("/locality");
+    }
+}

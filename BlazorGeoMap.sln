@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorGeoMap", "BlazorGeoMap\BlazorGeoMap.csproj", "{91613356-16DE-4C5A-9D6E-AF08885B91FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91613356-16DE-4C5A-9D6E-AF08885B91FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91613356-16DE-4C5A-9D6E-AF08885B91FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91613356-16DE-4C5A-9D6E-AF08885B91FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91613356-16DE-4C5A-9D6E-AF08885B91FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {333DE1D0-B096-4FBD-87FA-DCC04DF81DF5}
+	EndGlobalSection
+EndGlobal

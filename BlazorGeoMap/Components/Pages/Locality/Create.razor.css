@@ -1,0 +1,79 @@
+﻿﻿ /* Estilos para dispositivos móveis */
+@media only screen and (max-width: 767px) {
+    .edit-form-container
+
+{
+    background-color: #a2bdc3;
+    Cor de fundo desejada para dispositivos móveis padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    Adicionando a propriedade text-align para centralizar
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    color: red;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+}
+
+/* Estilos para desktops */
+@media only screen and (min-width: 768px) {
+    .edit-form-container {
+        background-color: #a2bdc3;
+        Cor de fundo desejada para desktops padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        Ajuste a largura máxima conforme necessário margin: auto;
+        box-sizing: border-box;
+        margin-top: 20px;
+        Ajuste conforme desejado margin-bottom: 20px;
+        Ajuste conforme desejado text-align: center;
+        Adicionando a propriedade text-align para centralizar
+    }
+
+    .form-label {
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+}
+/* Centralizar o h1 */
+h1 {
+    text-align: center;
+}﻿

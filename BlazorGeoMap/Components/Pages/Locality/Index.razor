@@ -1,0 +1,165 @@
+﻿
+ @* @page "/locality"
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@attribute [StreamRendering(true)]
+
+<h1>Localidades</h1>
+<a href="/locality/create" class="btn btn-primary">Nova Localidade</a>
+<br>
+
+<SearchLocality OnSearch="SearchLocality" />
+
+@if (!IBGE.Any())
+{
+    <p class="text-center">
+        <em>Carregando as localidades.</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <!-- Tabela de Localidades -->
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var locality in IBGE)
+            {
+                <tr>
+                    <td>@locality.Id</td>
+                    <td>@locality.State</td>
+                    <td>@locality.City</td>
+                    <td>
+                        <a href="/locality/edit/@locality.Id" class="btn btn-primary">
+                            Editar
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="/locality/delete/@locality.Id" class="btn btn-danger">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Links para Páginas de Pesquisa -->
+    <div class="mt-3">
+        <a href="/locality/search-city" class="btn btn-secondary ml-2">Pesquisar por Cidade</a>
+        <a href="/locality/search-state" class="btn btn-secondary ml-2">Pesquisar por Estado</a>
+        <a href="/locality/search-cod-ibge" class="btn btn-secondary ml-2">Pesquisar por Código (IBGE)</a>
+    </div>
+
+    <div class="pagination">
+        @for (int i = 1; i <= TotalPages; i++)
+        {
+            <button class="@(i == CurrentPage ? "active" : "")" @onclick="(() => ChangePage(i))">@i</button>
+        }
+    </div>
+}
+
+@code {
+    private const int ItemsPerPage = 10;
+    public IEnumerable<Locality> IBGE { get; set; } = Enumerable.Empty<Locality>();
+    public int TotalPages => (int)Math.Ceiling((double)TotalItems / ItemsPerPage);
+    public int CurrentPage { get; set; } = 1;
+    public int TotalItems { get; set; }
+    private string searchCity = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        var skipAmount = (CurrentPage - 1) * ItemsPerPage;
+        var query = Context.IBGE.AsNoTracking();
+
+        TotalItems = await query.CountAsync();
+        IBGE = await query.Skip(skipAmount).Take(ItemsPerPage).ToListAsync();
+        StateHasChanged();
+    }
+
+    private async Task ChangePage(int page)
+    {
+        CurrentPage = page;
+        await LoadDataAsync();
+    }
+
+    private async Task SearchLocality(string searchParams)
+    {
+        var searchValues = searchParams.Split(',');
+
+        var searchCity = searchValues.Length > 0 ? searchValues[0] : string.Empty;
+        var searchState = searchValues.Length > 1 ? searchValues[1] : string.Empty;
+        var searchIBGE = searchValues.Length > 2 ? searchValues[2] : string.Empty;
+
+        var result = Context.IBGE
+          .Where(locality =>
+            (string.IsNullOrEmpty(searchCity) || locality.City.Contains(searchCity)) &&
+            (string.IsNullOrEmpty(searchState) || locality.State.Contains(searchState)) &&
+            (string.IsNullOrEmpty(searchIBGE) || locality.Id.Contains(searchIBGE))
+          )
+          .AsNoTracking();
+
+        IBGE = await result.ToListAsync();
+
+        await LoadDataAsync();
+    }
+}
+ *@
+ @page "/locality"
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+@attribute [StreamRendering(true)]
+
+<PageTitle>Localidades</PageTitle>
+
+<link rel="stylesheet" href="./Index.razor.css">
+<h1>Localidades</h1>
+
+<div class="card-container">
+    <div class="card" style="width: 18rem;">
+        <a href="/locality/create">
+            <img class="card-img" src="https://i.pinimg.com/564x/61/20/9c/61209c97e2c5eb14c05d0d00478d99e3.jpg" alt="Card image cap">
+        </a>
+        <div class="card-body">
+            <a href="/locality/create" class="btn btn-primary">Nova Localidade</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <a href="/locality/state">
+            <img class="card-img" src="https://i.pinimg.com/564x/67/2f/d1/672fd1f4225c29db11c30264360f2c09.jpg" alt="Card image cap">
+        </a>
+        <div class="card-body">
+            <a href="/locality/search-state" class="btn btn-primary">Estados</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <a href="/locality/city">
+            <img class="card-img" src="https://i.pinimg.com/564x/12/f3/3d/12f33dc1be469eee511dd4933f9a35c1.jpg" alt="Card image cap">
+        </a>
+        <div class="card-body">
+            <a href="/locality/search-city" class="btn btn-primary">Cidades</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <a href="/locality/codibge">
+            <img class="card-img" src="https://agenciadenoticias.ibge.gov.br/images/agenciadenoticias/geociencias/2022_11/mapa-politico_not1.jpg" alt="Card image cap">
+        </a>
+        <div class="card-body">
+            <a href="/locality/search-cod-ibge" class="btn btn-primary">IBGE Codigo</a>
+        </div>
+    </div>
+</div>

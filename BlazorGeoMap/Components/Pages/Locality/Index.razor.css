@@ -1,0 +1,93 @@
+﻿﻿ /*Estilos para dispositivos móveis */
+@media only screen and (max-width: 767px) {
+    .card-container
+
+{
+    display: flex;
+    justify-content: space-around;  
+    flex-wrap: wrap;
+    margin: 0 -10px;    
+}
+
+.card {
+    display: contents;
+    width: 100%;  
+    margin-bottom: 10px;   
+}
+
+.card-img {
+    height: 300px;   
+    object-fit: cover;   
+}
+
+}
+
+ /*Estilos para desktops */
+@media only screen and (min-width: 992px) {
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Não permitir que os cards quebrem para a próxima linha */
+        margin: 0 -10px;
+       /* Adicionar margem negativa para compensar a margem interna dos cards justify-content: center;
+        Centralizar os cards na tela*/
+    }
+
+    .card {
+        display: inline-block;
+        width: calc(25% - 20px);  
+        margin: 0 10px 10px 5px;  
+        max-height: 360px;   
+        min-height: 360px;   
+        vertical-align: top;  
+    }
+
+    .card-img {
+        height: 300px;   
+        object-fit: cover;   
+    }
+}
+/* Estilos para dispositivos móveis */
+/*@media only screen and (max-width: 767px) {
+    .card-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
+
+    .card {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .card-img {
+        height: 300px;
+        object-fit: cover;
+    }
+}*/
+
+/* Estilos para desktops */
+/*@media only screen and (min-width: 992px) {
+    .card-container {
+        display: flex;
+        flex-wrap: nowrap;*/ /* Não permitir que os cards quebrem para a próxima linha */
+        /*overflow-x: auto;*/ /* Adicionar rolagem horizontal se necessário */
+        /*margin: 0 -10px;
+        justify-content: flex-start;*/ /* Alinhar os cards à esquerda */
+    /*}
+
+    .card {
+        width: 18rem;
+        margin: 0 10px;
+        max-height: 360px;
+        min-height: 360px;
+        vertical-align: top;
+    }
+
+    .card-img {
+        height: 300px;
+        object-fit: cover;
+    }
+}*/

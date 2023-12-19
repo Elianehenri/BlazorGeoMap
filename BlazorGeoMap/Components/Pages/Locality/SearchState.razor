@@ -1,0 +1,93 @@
+﻿ @page "/locality/search-state"
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+
+<link rel="stylesheet" href="SearchState.razor.css">
+<h3>Pesquisar por Estado</h3>
+
+<div class="form-group">
+    <label for="state">Estado:</label>
+    <br />
+    <div class="form-control-container">
+        <input type="text" class="form-control" id="state" bind="@searchState" @oninput="OnStateInputChange" placeholder="Digite o nome do estado" />
+        <br />
+        <button class="btn btn-primary" @onclick="PerformSearch">Pesquisar</button>
+        &nbsp;&nbsp;
+        <NavLink href="/locality">Cancelar</NavLink>
+    </div>
+</div>
+
+
+
+@if (searchResult.Any())
+{
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var locality in searchResult)
+            {
+                <tr>
+                    <td>@locality.Id</td>
+                    <td>@locality.State</td>
+                    <td>
+                        <NavLink class="btn btn-info" href=@($"locality/edit/{locality.Id}")>Edit</NavLink>
+                        <NavLink class="btn btn-danger" href=@($"locality/delete/{locality.Id}")>Excluir</NavLink>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (searchPerformed)
+{
+    <p class="text-center">
+        <em>Nenhum resultado encontrado.</em>
+    </p>
+}
+
+@code {
+    private string searchState = string.Empty;
+    private List<Locality> searchResult = new List<Locality>();
+    private bool searchPerformed = false;
+
+    [Inject]
+    private ApplicationDbContext LocalityContext { get; set; }
+
+    private void OnStateInputChange(ChangeEventArgs e)
+    {
+        searchState = e.Value?.ToString().Trim();
+    }
+
+    private async Task PerformSearch()
+    {
+        try
+        {
+            searchPerformed = true;
+            Console.WriteLine($"Valor de searchState: {searchState}");
+
+            // Realize a pesquisa na coleção de localidades usando LINQ
+            searchResult = Context.IBGE
+                .Where(locality => EF.Functions.Like(locality.State, $"%{searchState}%"))
+                .AsNoTracking()
+                .ToList();
+
+            // Adicione a seguinte linha para forçar a atualização da interface
+            StateHasChanged();
+
+            // Console log para depuração
+            await JSRuntime.InvokeVoidAsync("console.log", $"Número de resultados: {searchResult.Count}");
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", $"Erro durante a pesquisa: {ex.Message}");
+        }
+    }
+}

@@ -1,0 +1,80 @@
+﻿﻿ /* Estilos para dispositivos móveis */
+@media only screen and (max-width: 767px) {
+    h1
+
+{
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.edit-form-container {
+    background-color: #a2bdc3; /* Cor de fundo desejada para dispositivos móveis */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Adicionando a propriedade text-align para centralizar */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    width: 100%;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+}
+
+/* Estilos para desktops */
+@media only screen and (min-width: 768px) {
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .edit-form-container {
+        background-color: #a2bdc3; /* Cor de fundo desejada para desktops */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 50%; /* Largura desejada da edit-form-container em relação à largura da tela */
+        margin: auto; /* Centralizar a edit-form-container na tela */
+        text-align: center; /* Adicionando a propriedade text-align para centralizar */
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%; /* Largura total para preencher a largura da edit-form-container */
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+}

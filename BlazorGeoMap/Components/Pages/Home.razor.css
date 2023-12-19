@@ -1,0 +1,47 @@
+﻿﻿
+/* Estilo para mobile */
+@media (max-width: 767px) {
+    body {
+    text-align: center;
+    
+}
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+}
+
+/* Estilo para desktop */
+@media (min-width: 768px) {
+    body {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    img {
+        max-width: 40%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+}

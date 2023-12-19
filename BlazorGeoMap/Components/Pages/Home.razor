@@ -1,0 +1,25 @@
+﻿@* @page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app. *@
+@page "/"
+@inherits LayoutComponentBase
+
+<PageTitle>Home</PageTitle>
+
+<link rel="stylesheet" href="Home.razor.css">
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello @context.User.Identity?.Name!</h1>
+    </Authorized>
+    <NotAuthorized>
+        <h1>Hello, world!</h1>
+    </NotAuthorized>
+</AuthorizeView>
+
+<!-- Exibindo a imagem a partir de uma URL -->
+<img src="https://thumbs.dreamstime.com/b/o-mapa-mundial-cont%C3%A9m-uma-lupa-b%C3%BAssola-e-dois-passaportes-conceito-de-escolher-um-destino-para-viagem-escolha-viagens-lazer-239073280.jpg" alt="Imagem de Viagem">

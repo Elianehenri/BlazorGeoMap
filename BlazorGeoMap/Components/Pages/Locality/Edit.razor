@@ -1,0 +1,66 @@
+﻿@page "/locality/edit/{id}"
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+ @attribute [Authorize] 
+
+<link rel="stylesheet" href="Edit.razor.css" />
+<h1>Editar Localidade</h1>
+
+@if (Locality == null)
+{
+    <p class="text-center">
+        <em>Localidade não encontrada.</em>
+    </p>
+}
+else
+{
+    <div class="edit-form-container">
+        <div class="form-group">
+            <label for="state">Estado:</label>
+            <input id="state" class="form-control" @bind="Locality.State" />
+        </div>
+
+        <div class="form-group">
+            <label for="city">Cidade:</label>
+            <input id="city" class="form-control" @bind="Locality.City" />
+        </div>
+        <div class="form-group">
+            <label for="codIbge">Codigo IBGE:</label>
+            <input id="codIbge" class="form-control" @bind="Locality.Id" />
+        </div>
+
+        <button class="btn btn-primary" @onclick="UpdateLocality">Salvar Alterações</button>
+
+        <NavLink href="/locality">Cancelar</NavLink>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private Locality Locality { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Locality = await Context.IBGE.FindAsync(Id);
+    }
+
+    private async Task UpdateLocality()
+    {
+        if (IsValid())
+        {
+            await Context.SaveChangesAsync();
+            Navigation.NavigateTo("/locality");
+        }
+    }
+
+    private bool IsValid()
+    {
+
+
+        return true;
+    }
+}
+

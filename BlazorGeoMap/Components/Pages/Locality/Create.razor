@@ -1,0 +1,52 @@
+﻿@page "/locality/create"
+@using BlazorGeoMap.Data
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+@attribute [Authorize]
+
+
+<link rel="stylesheet" href="Create.razor.css" />
+
+<h1>Nova Localidade</h1>
+<div class="edit-form-container">
+    <EditForm Model="@Model" OnValidSubmit="OnValidSubmitAsync" FormName="localityCreateForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <InputText @bind-Value="Model.State" class="form-control" />
+            <ValidationMessage For="@(() => Model.State)" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cidade</label>
+            <InputText @bind-Value="Model.City" class="form-control" />
+            <ValidationMessage For="@(() => Model.City)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Criar
+        </button>
+        &nbsp;&nbsp;
+        <NavLink href="/locality">Cancelar</NavLink>
+    </EditForm>
+</div>
+
+@code {
+    public Locality Model { get; set; } = new();
+
+    public async Task OnValidSubmitAsync()
+    {
+
+        //  Um número sequencial formatado para ter sempre 7 caracteres
+        int nextId = await Context.IBGE.CountAsync() + 1;
+        Model.Id = nextId.ToString("D7");
+
+        await Context.IBGE.AddAsync(Model);
+        await Context.SaveChangesAsync();
+
+        Navigation.NavigateTo("/locality");
+    }
+}
