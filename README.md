@@ -45,6 +45,10 @@ No arquivo `appsettings.json`, configure a string de conexão do banco de dados:
   ```bash
 dotnet ef database update
 ```
+
+# Vídeo do projeto em execução
+[Assista ao vídeo](https://drive.google.com/file/d/1fLCOiPQXOYTU5GBH1BNdtQCIIMMWeE45/view?pli=1)
+
  ### The Noobs - Grupo 05 
 * [Eliane Henriqueta](https://github.com/Elianehenri)
 * [Pedro Dummond](https://github.com/PeDrumond)
